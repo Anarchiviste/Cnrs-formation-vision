@@ -1,109 +1,117 @@
-# Tutorial: Installation and Project Import in Label Studio
+# Tutoriel : Installation et importation de projets dans Label Studio
 
-[Official Label Studio Documentation](https://labelstud.io/guide/quick_start)
+[Documentation officielle de Label Studio](https://labelstud.io/guide/quick_start)
 
-Developed by the company HumanSignal, Label Studio is a highly popular open-source data annotation application. It is both modular and programmable ; making it ideal for prototyping any task related to building datasets for the digital humanities ; while remaining simple enough for individual use by researchers, engineers, or students without a complex technical infrastructure.
+Développé par HumanSignal, Label Studio est une application open source d'annotation de données très populaire. Modulaire et programmable, elle est idéale pour le prototypage de toute tâche liée à la création de jeux de données pour les humanités numériques, tout en restant suffisamment simple pour une utilisation individuelle par des chercheurs, ingénieurs ou étudiants ne disposant pas d'une infrastructure technique complexe.
 
-Label Studio supports annotation environments for a wide range of machine learning tasks:
+Label Studio prend en charge les environnements d'annotation pour un large éventail de tâches d'apprentissage automatique :
 
-- **Computer Vision** (classification, detection, tracking, segmentation)
+- **Vision par ordinateur** (classification, détection, suivi, segmentation)
 
-- **Natural Language Processing** (OCR/HTR, named entity recognition, sentiment analysis, context-based response)
+- **Traitement automatique du langage naturel** (OCR/HTR, reconnaissance d'entités nommées, analyse des sentiments, réponse contextuelle)
 
-- **Audio and Speech Processing** (transcription, voice recognition, emotion recognition)
+- **Traitement audio et vocal** (transcription, reconnaissance vocale, reconnaissance des émotions)
 
-- **Multimodal Processing** (Audio-Text or Image-Text)
+- **Traitement multimodal** (audio-texte ou image-texte)
 
-- **Evaluation and fine-tuning** for all types of models.
+- **Évaluation et optimisation** pour tous types de modèles.
 
-## 1: Installing Label Studio with Python
+## 1 : Installation de Label Studio avec Python
 
-There are several ways to install and set up a Label Studio environment; here, we will use the version for Python available via PIP.
+Il existe plusieurs façons d’installer et de configurer un environnement Label Studio ; nous utiliserons ici la version pour Python disponible via PIP.
 
-1. In a terminal, create a `labelstudio` directory:
+1. Dans un terminal, créez un répertoire `labelstudio` :
+
 ```
 mkdir -p labelstudio/subdirectory
 cd labelstudio/
 ```
-2. Create a Python virtual environment and activate it:
+2. Créez un environnement virtuel Python et activez-le :
+
 ```
 python -m venv labelstudioenv
 source labelstudioenv/bin/activate
 ```
-3. Install Label Studio within the virtual environment:
+3. Installez Label Studio dans l'environnement virtuel :
+
 ```
 pip install label-studio
 ```
-4. Configure storage access (this must be repeated each time the virtual environment is reactivated):
+4. Configurez l'accès au stockage (cette opération doit être répétée à chaque réactivation de l'environnement virtuel) :
+
 ```
 export LABEL_STUDIO_LOCAL_FILES_SERVING_ENABLED=true
 export LABEL_STUDIO_LOCAL_FILES_DOCUMENT_ROOT=/home/user/labelstudio/
 ```
 
-5. Launch Label Studio:
+5. Lancez Label Studio :
+
 ```
 label-studio
 ```
-The application should automatically open in your default web browser at port 8080: [http://localhost:8080/](http://localhost:8080/)
+L'application devrait s'ouvrir automatiquement dans votre navigateur web par défaut sur le port 8080. [http://localhost:8080/](http://localhost:8080/)
 
-You must create a Label Studio user, even when using a local system.
+Vous devez créer un utilisateur Label Studio, même si vous utilisez un système local.
 
-## 2: Getting Started with Label Studio
+## 2 : Premiers pas avec Label Studio
 
-1. Click on the `Create Project` menu and enter a name for your project. Skip the `Data Import` menu and proceed directly to the `Labeling Setup` menu.
+1. Cliquez sur le menu `Create Project` et donnez un nom à votre projet. Ignorez le menu `Data Import` et accédez directement au menu `Labeling Setup`.
 
-2. Under the `Computer Vision` category, select `Object Detection with Bounding Boxes`.
+2. Dans la catégorie `Computer Vision`, sélectionnez `Object Detection with Bounding Boxes`.
 
-3. You will be taken to a graphical user interface (GUI) for configuring the annotation environment. Switch to the `Code` view and copy-paste the following pseudo-code snippet:
+3. Vous serez redirigé vers une interface graphique (GUI) pour configurer l’environnement d’annotation. Passez en mode `Code` et copiez-collez l'extrait de pseudo-code suivant :
 
 ```
 <View>
+
 <Image name="image" value="$image"/>
+
 <RectangleLabels name="label" toName="image">
 
-
 <Label value="Illustration" background="#FF0052"/><Label value="Finger" background="#00C68D"/><Label value="Table" background="#0055DA"/></RectangleLabels>
+
 </View>
+
 ```
 
-Finally, be sure to click `Save`.
+Enfin, n'oubliez pas de cliquer sur `Save`.
 
-## 3: Connecting External Storage
+## 3 : Connexion d'un stockage externe
 
-We now have a project with an annotation interface, but no data has been imported yet. While Label Studio supports importing items one by one, it is more convenient to perform bulk imports by folder.
+Nous avons maintenant un projet avec une interface d'annotation, mais aucune donnée n'a encore été importée. Bien que Label Studio permette d'importer des éléments un par un, il est plus pratique d'effectuer des importations groupées par dossier.
 
-1. To do this, click the blue `Connect Cloud Storage` button and select `Local Files`.
+1. Pour ce faire, cliquez sur le bouton bleu `Connect Cloud Storage` et sélectionnez `Local Files`.
 
-2. Enter a name for the storage—for example, `Training Data`—and provide the absolute local path to the `subdirectory` folder.
+2. Saisissez un nom pour le stockage (par exemple, « Données d'entraînement ») et indiquez le chemin d'accès local absolu au dossier `subdirectory`.
 
 ```
 /home/user/labelstudio/subdirectory
 ```
-Then, click `Verify Connection`, followed by `Next`.
+Cliquez ensuite sur  `Verify Connection`, puis sur `Next`.
 
-3. In the `Import Settings & Preview` menu, under `Import Method`, select the option `Files - Automatically creates a task for each storage object`. You can skip the `File Name Filter` option; then click `Next` and `Save & Sync`.
+3. Dans le menu `Import Settings & Preview`, sous `Import Method`, sélectionnez l'option `Files - Automatically creates a task for each storage object`. Vous pouvez ignorer l'option `File Name Filter` ; puis `Next` et `Save & Sync`.
 
-If you modify the files within the folder, you can return to the `Cloud Storage` menu and use `Sync Storage` to import any new images.
+Si vous modifiez les fichiers du dossier, vous pouvez retourner dans le menu `Cloud Storage` et utiliser `Sync Storage` pour importer les nouvelles images.
 
-4. Add images to your subdirectory and click `Sync Storage` to have them appear as "tasks" within your annotation environment.
+4. Ajoutez des images à votre sous-répertoire et cliquez sur `Sync Storage` pour qu'elles apparaissent comme des « tâches » dans votre environnement d'annotation.
 
-## 4: The Label Studio Annotation Environment
+## 4 : Environnement d’annotation Label Studio
 
-The pseudo-code we copied and pasted defines a simple environment with three classes:
+Le pseudo-code copié-collé définit un environnement simple avec trois classes :
 
 - Illustration
-- Finger
+- Doigt
 - Table
 
-Within the Label Studio project interface, you can adjust annotation project settings, organize your tasks, and enter the annotation environment by clicking the `Label All Tasks` button.
+Dans l’interface du projet Label Studio, vous pouvez ajuster les paramètres du projet d’annotation, organiser vos tâches et accéder à l’environnement d’annotation en cliquant sur le bouton `Label All Tasks`.
 
-The annotation environment displays your image, where you can draw bounding boxes and assign them to specific classes using the number keys. Once the boxes have been drawn (or if no objects are present to be annotated), click the `Submit` button to save your work in Label Studio. If an image is invalid and should be excluded from the dataset, you can use the `Skip` button.
+L’environnement d’annotation affiche votre image. Vous pouvez y dessiner des cadres de délimitation et les assigner à des classes spécifiques à l’aide des touches numériques. Une fois les cadres dessinés (ou si aucun objet n’est présent à annoter), cliquez sur le bouton `Submit` pour enregistrer votre travail dans Label Studio. Si une image est invalide et doit être exclue de l’ensemble de données, vous pouvez utiliser le bouton `Skip`.
 
-You can zoom in on images using the `CTRL +` and `CTRL -` shortcuts. The left-hand sidebar provides several tools, including an action history and information regarding classes and the relationships between them (for hierarchical ontologies).
+Vous pouvez zoomer sur les images à l’aide des raccourcis `CTRL +` et `CTRL -`. La barre latérale gauche propose plusieurs outils, notamment un historique des actions et des informations sur les classes et leurs relations (pour les ontologies hiérarchiques).
+## 5 : Importer un jeu de données pré-annoté pour modification et correction
 
-## 5: Importing a pre-annotated dataset for modification and correction
+Voici la structure de notre répertoire `labelstudio/`, nécessaire pour importer un jeu de données pré-annoté au format YOLO dans Label Studio.
 
-Below is the structure of our `labelstudio/` directory, which is required to import a pre-annotated dataset in YOLO format into Label Studio.
 ```
 labelstudio
 └── subdirectory
@@ -118,29 +126,31 @@ labelstudio
         └── n.txt
 ```
 
-### 5.1 The classes.txt file
+### 5.1 Le fichier classes.txt
 
-An annotation in YOLO format is structured as follows: `class center_x center_y width height`, with coordinates normalized from 0 to 1 and limited to 6 decimal places.
+Une annotation au format YOLO est structurée comme suit : `class center_x center_y width height`, avec des coordonnées normalisées entre 0 et 1 et limitées à 6 décimales.
+
 ```
 0 0.41880 0.28368 0.34066 0.32192
 ```
 
-The YOLO notation represents classes using a number between 0 and *n*. The `classes.txt` file contains the list of classes, organized according to the numerical order used in the dataset you wish to process.
+La notation YOLO représente les classes par un nombre compris entre 0 et n. Le fichier `classes.txt` contient la liste des classes, organisées selon l'ordre numérique utilisé dans le jeu de données à traiter.
 
 ```
 Illustration
-Finger
-Table
+Doigt
+Tableau
 ```
-Images and their corresponding labels must have the exact same filename; during the annotation process, any images that lack a corresponding `.txt` file will be considered unannotated during training. 
+Les images et leurs étiquettes correspondantes doivent avoir exactement le même nom de fichier ; lors de l'annotation, toute image sans fichier `.txt` correspondant sera considérée comme non annotée pendant l'entraînement.
 
-### 5.2 Converting YOLO to JSON TASK
+### 5.2 Conversion d'une tâche YOLO en JSON
 
-By shutting down Label Studio using `CTRL+C` and without deactivating the virtual environment, we can use Label Studio’s built-in YOLO-to-JSON-task conversion utility with the following command:
+En fermant Label Studio avec `CTRL+C` sans désactiver l'environnement virtuel, vous pouvez utiliser l'utilitaire de conversion de tâches YOLO vers JSON intégré à Label Studio avec la commande suivante :
 ```
 label-studio-converter import yolo -i /home/user/labelstudio/subdirectory -o output.json --image-root-url "/data/local-files/?d=subdirectory/images"
 ```
-If the conversion is successful, two new files should appear in the directory structure.
+
+Si la conversion réussit, deux nouveaux fichiers devraient apparaître dans l'arborescence des répertoires.
 ```
 labelstudio
 ├── output.json
@@ -156,7 +166,7 @@ labelstudio
         ├── 2.txt
         └── n.txt
 ```
-You can open the JSON file in your browser to verify that the annotations have been correctly converted to the Label Studio format. For your annotations to be functional, ensure that they contain an "annotations" section that includes the parameters x, y, width, and height, as well as a "rectanglelabels" element.
+Vous pouvez ouvrir le fichier JSON dans votre navigateur pour vérifier que les annotations ont été correctement converties au format Label Studio. Pour que vos annotations soient fonctionnelles, assurez-vous qu'elles contiennent une section « annotations » incluant les paramètres x, y, largeur et hauteur, ainsi qu'un élément « rectanglelabels ».
 ```json
 {
    "data":{
@@ -185,13 +195,12 @@ You can open the JSON file in your browser to verify that the annotations have b
 }
 ```
 
-### 5.3 Importing the converted images and annotations
+### 5.3 Importation des images et annotations converties
 
-Relaunch Label Studio, navigate to your project, then select the `Import` menu and the `Upload Files` button.
+Relancez Label Studio, accédez à votre projet, puis sélectionnez le menu `Import` et le bouton `Upload Files` .
 
-Select the `output.json` file. In theory, all the files, along with their annotations, should be imported and become available for selection and editing within Label Studio.
+Sélectionnez le fichier « output.json ». En théorie, tous les fichiers, ainsi que leurs annotations, devraient être importés et disponibles pour sélection et modification dans Label Studio.
 
-## 6: Exporting a dataset from Label Studio
+## 6 : Exportation d'un jeu de données depuis Label Studio
 
-To export a project from Label Studio, simply use the `Export` button and choose one of the export formats offered by the software (COCO, YOLO, or Pascal VOC XML), which will be provided as a .zip file. You can also directly output JSON TASK to feed a conversion pipeline if Label Studio does not support your need. 
-
+Pour exporter un projet depuis Label Studio, utilisez simplement le bouton `Export` et choisissez l'un des formats d'exportation proposés par le logiciel (COCO, YOLO ou Pascal VOC XML). Le fichier exporté sera compressé au format .zip. Vous pouvez également exporter directement au format JSON TASK pour alimenter un pipeline de conversion si Label Studio ne prend pas en charge votre besoin.
