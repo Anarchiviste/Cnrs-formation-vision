@@ -1,3 +1,7 @@
+Tutoriel pour Linux/Mac, vous pouvez suivre sur windows en installant gitbash ou WSL et un environnement Anaconda
+- https://labelstud.io/guide/install.html#Install-with-Anaconda
+- git-scm.com/install/windows
+
 # Tutoriel : Installation et importation de projets dans Label Studio
 
 [Documentation officielle de Label Studio](https://labelstud.io/guide/quick_start)
