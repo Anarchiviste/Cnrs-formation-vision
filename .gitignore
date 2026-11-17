@@ -3,3 +3,6 @@ formationVision
 dataset
 test
 .venv
+imagesTéléchargés
+mes_runs
+predictions.csv

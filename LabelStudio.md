@@ -4,6 +4,12 @@ Tutoriel pour Linux/Mac, vous pouvez suivre sur windows en installant gitbash ou
 
 Nous allons d'abord récupérer un manuscrit astronomique avec l'aide du code que nous avons développé avec le tutoriel IIIF : 
 ```
+python -m venv venv/
+```
+```
+source venv/bin/activate
+```
+```
 python aikoncli.py https://eida.obspm.fr/eida/iiif/wit404_pdf553/manifest.json test/
 ```
 Nous récupérons dans un dossier test/wit404_pdf553 un petit jeu de données au format YOLO.
@@ -51,6 +57,8 @@ pip install label-studio
 
 ```
 export LABEL_STUDIO_LOCAL_FILES_SERVING_ENABLED=true
+```
+```
 export LABEL_STUDIO_LOCAL_FILES_DOCUMENT_ROOT=/home/user/labelstudio/
 ```
 
