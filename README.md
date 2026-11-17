@@ -16,3 +16,11 @@ Formation aux fondamentaux de la vision par ordinateur appliquée au secteur du 
 ├── requirement.txt
 └── Vision_introduction_1-2.pdf
 ```
+## Installation d'un environnement pour Label Studio 
+
+```
+python -m venv labelstudiovenv
+source labelstudiovenv/bin/activate
+pip install -r requirement.txt
+```
+

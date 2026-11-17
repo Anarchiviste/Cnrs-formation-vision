@@ -12,6 +12,10 @@ source venv/bin/activate
 ```
 python aikoncli.py https://eida.obspm.fr/eida/iiif/wit404_pdf553/manifest.json test/
 ```
+```
+deactivate
+sudo rm -rf venv/
+```
 Nous récupérons dans un dossier test/wit404_pdf553 un petit jeu de données au format YOLO.
 
 # Tutoriel : Installation et importation de projets dans Label Studio
