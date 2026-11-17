@@ -2,19 +2,19 @@ Tutoriel pour Linux/Mac, vous pouvez suivre sur windows en installant gitbash ou
 - https://labelstud.io/guide/install.html#Install-with-Anaconda
 - git-scm.com/install/windows
 
-Nous allons d'abord récupérer un manuscrit astronomique avec l'aide du code que nous avons développé avec le tutoriel IIIF : 
+Dans le dossier Cnrs_formation_vision que vous avez cloné, nous allons récupérer un manuscrit astronomique avec l'aide du code que nous avons développé avec le tutoriel IIIF : 
 ```
-python -m venv venv/
-```
-```
-source venv/bin/activate
+python -m venv .venv
+source .venv/bin/activate
 ```
 ```
-python aikoncli.py https://eida.obspm.fr/eida/iiif/wit404_pdf553/manifest.json test/
+pip install -r requirement.txt
+```
+```
+python aikoncli.py https://eida.obspm.fr/eida/iiif/wit404_pdf553/manifest.json ./
 ```
 ```
 deactivate
-sudo rm -rf venv/
 ```
 Nous récupérons dans un dossier test/wit404_pdf553 un petit jeu de données au format YOLO.
 
