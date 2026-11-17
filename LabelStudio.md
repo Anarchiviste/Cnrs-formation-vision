@@ -2,6 +2,12 @@ Tutoriel pour Linux/Mac, vous pouvez suivre sur windows en installant gitbash ou
 - https://labelstud.io/guide/install.html#Install-with-Anaconda
 - git-scm.com/install/windows
 
+Nous allons d'abord récupérer un manuscrit astronomique avec l'aide du code que nous avons développé avec le tutoriel IIIF : 
+```
+python aikoncli.py https://eida.obspm.fr/eida/iiif/wit404_pdf553/manifest.json test/
+```
+Nous récupérons dans un dossier test/wit404_pdf553 un petit jeu de données au format YOLO.
+
 # Tutoriel : Installation et importation de projets dans Label Studio
 
 [Documentation officielle de Label Studio](https://labelstud.io/guide/quick_start)
